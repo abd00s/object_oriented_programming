@@ -107,6 +107,8 @@ end
 row_a = ["---"]*$grid_x.to_i
 separator = ([""]+row_a+[""]).join('+')
 
+count_arr = (0..$count)
+
 $grid_y.to_i.times do |row|
 	puts separator
 
@@ -116,11 +118,11 @@ $grid_y.to_i.times do |row|
 	if rovers[0].y == row
 		if rovers[0].h == "N"
 			row_b[rovers[0].x] = " ^ " 
-		elsif @h == "E"
+		elsif rovers[0].h == "E"
 			row_b[rovers[0].x] = " > "
-		elsif @h == "S"
+		elsif rovers[0].h == "S"
 			row_b[rovers[0].x] = " v "
-		elsif @h == "W"
+		elsif rovers[0].h == "W"
 			row_b[rovers[0].x] = " < "
 		end
 				
