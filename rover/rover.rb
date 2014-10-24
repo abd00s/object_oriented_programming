@@ -15,13 +15,10 @@ class Rover
 	def read_instruction(str)
 		str.split(//).each do |instruction|
 			if instruction == "M"
-				#puts "Move forward one space"
 				move
 			elsif instruction == "R"
-				#puts "Turn 90 deg to right"
 				turn_right
 			elsif instruction == "L"
-				#puts "Turn 90 deg to left"
 				turn_left	
 			else
 				puts "I do not recognise that instruction"
@@ -74,16 +71,24 @@ class Rover
 	end
 end
 
+# Initiated rovers held in this array 
 rovers = [] 
+# Keeps track of number of rovers deployed 
 $count = 0
+# Condition for while loop (deploy more rovers?)
 more = true
 
+puts
+puts
 puts "What is the size of your grid (top-right coordinated sepearted by a space):"
 
 $grid_x, $grid_y = gets.chomp.split
 
-
+puts
 puts "The size of your grid is (#{$grid_x}, #{$grid_y})"
+puts
+
+# Loop to initiate multiple rovers; terminated with 'n' command
 
 while more
 	puts "Where do you want to place your rover (x, y, direction):"
@@ -92,7 +97,7 @@ while more
 	rovers << Rover.new(x.to_i, y.to_i, h)
 	$count += 1
 	puts "You have initiated a rover at position (#{x}, #{y}), facing #{h}"
-
+	puts
 	puts "Enter your string of instructions (all caps, no spaces): "
 	commands = gets.chomp
 	rovers[$count -1].read_instruction(commands)
@@ -103,6 +108,7 @@ while more
 	more = false if gets.chomp == "n" 
 end
 
+# Grid visualisation 
 
 row_a = ["---"]*$grid_x.to_i
 separator = ([""]+row_a+[""]).join('+')
@@ -132,3 +138,4 @@ $grid_y.to_i.times do |row|
 	puts ([""]+row_b+[""]).join('|')
 end
 puts separator		
+puts
