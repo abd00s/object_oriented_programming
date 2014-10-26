@@ -20,7 +20,7 @@ class Receipt
 			imported = imported(is_imported)
 			new_item = Item.new(name, item_price, tax_applicable, imported)
 			@items << new_item
-			@taxes += new_item.tax_amount
+			@taxes += ((new_item.tax_amount)*20).round/20.0
 			@total += new_item.total_item_price
 			puts "Add more items?"
 			y_or_no = gets.chomp.downcase
@@ -54,9 +54,9 @@ class Receipt
 	end
 
 	def display_receipt
-		@items.each{|item| puts "1 #{item.name}: $#{item.total_item_price}"}	
-		puts "Sales Taxes: #{@taxes}"
-		puts "Total: #{@total}" 
+		@items.each{|item| puts "1 #{item.name}: $#{item.total_item_price.round(2)}"}	
+		puts "Sales Taxes: #{@taxes.round(2)}"
+		puts "Total: #{@total.round(2)}" 
 	end
 
 

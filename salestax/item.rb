@@ -15,7 +15,7 @@ class Item
 		elsif !(@tax_applicable) && @imported
 			@tax_amount = @price * 0.05
 		else   
-			@tax_amount = 0
+			@tax_amount = 0.to_f
 		end
 	end
 
@@ -23,3 +23,4 @@ class Item
 		@price + @tax_amount
 	end
 end
+
