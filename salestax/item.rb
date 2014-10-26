@@ -18,4 +18,8 @@ class Item
 			@tax_amount = 0
 		end
 	end
+
+	def total_item_price
+		@price + @tax_amount
+	end
 end

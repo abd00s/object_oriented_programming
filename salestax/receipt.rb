@@ -20,6 +20,8 @@ class Receipt
 			imported = imported(is_imported)
 			new_item = Item.new(name, item_price, tax_applicable, imported)
 			@items << new_item
+			@taxes += new_item.tax_amount
+			@total += new_item.total_item_price
 			puts "Add more items?"
 			y_or_no = gets.chomp.downcase
 			break if y_or_no == "n" 
@@ -52,7 +54,9 @@ class Receipt
 	end
 
 	def display_receipt
-		@items.each{|item| puts "1 #{item.name}: $#{item.price} #{item.tax_amount}"}	#BASE PRICE; CHANGE	
+		@items.each{|item| puts "1 #{item.name}: $#{item.total_item_price}"}	
+		puts "Sales Taxes: #{@taxes}"
+		puts "Total: #{@total}" 
 	end
 
 
