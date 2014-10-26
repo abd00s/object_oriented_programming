@@ -24,6 +24,7 @@ class Receipt
 			y_or_no = gets.chomp.downcase
 			break if y_or_no == "n" 
 		end
+		display_receipt
 	end
 
 	def print_items
@@ -49,6 +50,11 @@ class Receipt
 	def imported(y_or_no)
 		return y_or_no == "y" ? true : false 
 	end
+
+	def display_receipt
+		@items.each{|item| puts "1 #{item.name}: $#{item.price} #{item.tax_amount}"}	#BASE PRICE; CHANGE	
+	end
+
 
 	def self.run
 		receipt = Receipt.new
